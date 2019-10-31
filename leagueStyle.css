@@ -1,0 +1,94 @@
+
+body {
+  background-color: #ccccff;
+}
+
+/* Add a black background color to the top navigation */
+.navBar {
+    background-color:  #003cb3;
+    overflow: hidden;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .navBar a {
+    float: left;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    width: 25%;
+    font-size: 200%;
+  }
+  
+  /* Change the color of links on hover */
+  .navBar a:hover {
+    background-color: #99b9ff;
+    color: white;
+  }
+  
+  /* Add a color to the active/current link */
+  .navBar a.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+
+  /*stuff beneath the navBar for league.html*/
+
+#leaderBoard {
+  background-color:#003cb3;
+  width: 25%;
+  display: inline-block;
+  margin: 5% 2.5% 5% 6.5%;
+  color: white;
+}
+
+#matchups {
+  background-color: #003cb3;
+  width: 25%;
+  display: inline-block;
+  margin: 5% 2.5% 5% 2.5%;
+  color: white;
+}
+
+#transactions {
+  background-color: #003cb3;
+  width: 25%;
+  display: inline-block;
+  margin: 5% 6.5% 5% 2.5%;
+  color: white;
+}
+
+h2 {
+  text-align: center;
+}
+
+/*leader board table below*/
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+#lbHeadings {
+  text-align: center;
+  background-color: #b3b3ff;
+}
+
+table {
+  background-color: white;
+  color: black;
+  margin: 0 2% 2% 2%;
+}
+
+/* styling for team.html below */
+
+
+
+
+
+
+
+  

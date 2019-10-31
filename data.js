@@ -1,212 +1,86 @@
-import * as obj from './objects.js';
+import * as myObjects from './objects.js';
 
-//Overall ACC Player List
-let acc = [];
+//NCAA players QB
 
-//UNC Team and Players
-let uncSchedule = ["USC", "Miami", "Wake Forest", "App State", "Clemson", "Georgia Tech", "BYE", "Virginia Tech", "Duke", "Virginia", "BYE", "Pitt", "Mercer", "NC State"];
-let uncPic = "pictures/UNCFootballPic.jpg";
-let uncTeam = new obj.NCAATeam(uncSchedule, uncPic, "UNC");
-acc.push(new obj.NCAAPlayer("Sam", "Howell", null, new obj.OffensiveStats(), true, uncTeam, null, "QB"));
-acc.push(new obj.NCAAPlayer("Javonte", "Williams", null, new obj.OffensiveStats(), true, uncTeam, null, "RB"));
-acc.push(new obj.NCAAPlayer("Michael", "Carter", null, new obj.OffensiveStats(), true, uncTeam, null, "RB"));
-acc.push(new obj.NCAAPlayer("Dazz", "Newsome", null, new obj.OffensiveStats(), true, uncTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Dyami", "Brown", null, new obj.OffensiveStats(), true, uncTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Beau", "Corrales", null, new obj.OffensiveStats(), true, uncTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Carl", "Tucker", null, new obj.OffensiveStats(), true, uncTeam, null, "TE"));
-acc.push(new obj.NCAAPlayer("UNC", "Defense", null, new obj.DefensiveStats(), true, uncTeam, null, "DEF"));
+let QB1 = new myObjects.NCAAPlayer("Sam", "Howell", "pic here", "stat object", true, "North Carolina", "Timmy object", "QB");
+let QB2 = new myObjects.NCAAPlayer("Tobias", "Oliver", "pic here", "stat object", true, "Georgia Tech", "Timmy object", "QB");
+let QB3 = new myObjects.NCAAPlayer("Jawon", "Pass", "pic here", "stat object", true, "Louisville", "Timmy object", "QB");
+let QB4 = new myObjects.NCAAPlayer("Matt", "McKay", "pic here", "stat object", true, "NC State", "Timmy object", "QB");
+let QB5 = new myObjects.NCAAPlayer("Quentin", "Harris", "pic here", "stat object", true, "Duke", "Timmy object", "QB");
+let QB6 = new myObjects.NCAAPlayer("Kenney", "Pickett", "pic here", "stat object", true, "Pitt", "Timmy object", "QB");
+let QB7 = new myObjects.NCAAPlayer("N'Kosi", "Perry", "pic here", "stat object", true, "Miami", "Timmy object", "QB");
+let QB8 = new myObjects.NCAAPlayer("Anthony", "Brown", "pic here", "stat object", true, "Boston College", "Timmy object", "QB");
+let QB9 = new myObjects.NCAAPlayer("Ryan", "Willis", "pic here", "stat object", true, "Virginia Tech", "Timmy object", "QB");
+let QB10 = new myObjects.NCAAPlayer("Jamie", "Newman", "pic here", "stat object", true, "Wake Forest", "Timmy object", "QB");
+let QB11 = new myObjects.NCAAPlayer("James", "Blackman", "pic here", "stat object", true, "Florida State", "Timmy object", "QB");
+let QB12 = new myObjects.NCAAPlayer("Bryce", "Perkins", "pic here", "stat object", true, "Virginia", "Timmy object", "QB");
+let QB13 = new myObjects.NCAAPlayer("Trevor", "Lawrence", "pic here", "stat object", true, "Clemson", "Timmy object", "QB");
 
-//NC State Team and Players
-let ncStateSchedule = ["ECU", "Western Carolina", "West Virginia", "Ball State", "Florida State", "BYE", "Syracuse", "Boston College", "BYE", "Wake Forest", "Clemson", "Louisville", "Georgia Tech", "UNC"];
-let ncStatePic = "pictures/NCStateFootballPic.jpg";
-let ncStateTeam = new obj.NCAATeam(ncStateSchedule, ncStatePic, "NC State");
-acc.push(new obj.NCAAPlayer("Matthew", "McKay", null, new obj.OffensiveStats(), true, ncStateTeam, null, "QB"));
-acc.push(new obj.NCAAPlayer("Zonovan", "Knight", null, new obj.OffensiveStats(), true, ncStateTeam, null, "RB"));
-acc.push(new obj.NCAAPlayer("Jordan", "Houston", null, new obj.OffensiveStats(), true, ncStateTeam, null, "RB"));
-acc.push(new obj.NCAAPlayer("Emeka", "Emezie", null, new obj.OffensiveStats(), true, ncStateTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Thayer", "Thomas", null, new obj.OffensiveStats(), true, ncStateTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Tabari", "Hines", null, new obj.OffensiveStats(), true, ncStateTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Cary", "Angeline", null, new obj.OffensiveStats(), true, ncStateTeam, null, "TE"));
-acc.push(new obj.NCAAPlayer("NC State", "Defense", null, new obj.DefensiveStats(), true, ncStateTeam, null, "DEF"));
+//NCAA players RB
 
-//Duke Team and Players
-let dukeSchedule = ["Alabama", "NC A&T", "Middle Tennessee", "BYE", "Virginia Tech", "Pitt", "Georgia Tech", "Virginia", "UNC", "BYE", "Notre Dame", "Syracuse", "Wake Forest", "Miami"];
-let dukePic = "pictures/DukeFootball.jpg";
-let dukeTeam = new obj.NCAATeam(dukeSchedule, dukePic, "Duke");
-acc.push(new obj.NCAAPlayer("Quentin", "Harris", null, new obj.OffensiveStats(), true, dukeTeam, null, "QB"));
-acc.push(new obj.NCAAPlayer("Deon", "Jackson", null, new obj.OffensiveStats(), true, dukeTeam, null, "RB"));
-acc.push(new obj.NCAAPlayer("Aaron", "Young", null, new obj.OffensiveStats(), true, dukeTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Jalon", "Calhoun", null, new obj.OffensiveStats(), true, dukeTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Noah", "Gray", null, new obj.OffensiveStats(), true, dukeTeam, null, "TE"));
-acc.push(new obj.NCAAPlayer("Duke", "Defense", null, new obj.DefensiveStats(), true, dukeTeam, null, "DEF"));
+let RB1 = new myObjects.NCAAPlayer("Michael", "Carter", "pic here", "stat object", true, "North Carolina", "Timmy object", "RB");
+let RB2 = new myObjects.NCAAPlayer("Jordan", "Mason", "pic here", "stat object", true, "Georgia Tech", "Timmy object", "RB");
+let RB3 = new myObjects.NCAAPlayer("Antonio", "William", "pic here", "stat object", true, "North Carolina", "Timmy object", "RB");
+let RB4 = new myObjects.NCAAPlayer("Deon", "Jackson", "pic here", "stat object", true, "Duke", "Timmy object", "RB");
+let RB5 = new myObjects.NCAAPlayer("Brittain", "Brown", "pic here", "stat object", true, "Duke", "Timmy object", "RB");
+let RB6 = new myObjects.NCAAPlayer("Kenney", "Pickett", "pic here", "stat object", true, "Pitt", "Timmy object", "RB");
+let RB7 = new myObjects.NCAAPlayer("Deejay", "Dallas", "pic here", "stat object", true, "Miami", "Timmy object", "RB");
+let RB8 = new myObjects.NCAAPlayer("Moe", "Neal", "pic here", "stat object", true, "Syracuse", "Timmy object", "RB");
+let RB9 = new myObjects.NCAAPlayer("Ryan", "Willis", "pic here", "stat object", true, "Virginia Tech", "Timmy object", "RB");
+let RB10 = new myObjects.NCAAPlayer("Cade", "Carney", "pic here", "stat object", true, "Wake Forest", "Timmy object", "RB");
+let RB11 = new myObjects.NCAAPlayer("Cam", "Akers", "pic here", "stat object", true, "Florida State", "Timmy object", "RB");
+let RB12 = new myObjects.NCAAPlayer("Ricky", "Person", "pic here", "stat object", true, "NC State", "Timmy object", "RB");
+let RB13 = new myObjects.NCAAPlayer("Travis", "Etienne", "pic here", "stat object", true, "Clemson", "Timmy object", "RB");
 
-//Clemson Team and Players
-let clemsonSchedule = ["Georgia Tech", "Texas A&M", "Syracuse", "UNC Charlotte", "UNC", "BYE", "Florida State", "Louisville", "Boston College", "Wofford", "NC State", "Wake Forest", "BYE", "USC"];
-let clemsonPic = "pictures/ClemsonFootball.jpg";
-let clemsonTeam = new obj.NCAATeam(clemsonSchedule, clemsonPic, "Clemson");
-acc.push(new obj.NCAAPlayer("Trevor", "Lawrence", null, new obj.OffensiveStats(), true, clemsonTeam, null, "QB"));
-acc.push(new obj.NCAAPlayer("Travis", "Etienne", null, new obj.OffensiveStats(), true, clemsonTeam, null, "RB"));
-acc.push(new obj.NCAAPlayer("Lyn-J", "Dixon", null, new obj.OffensiveStats(), true, clemsonTeam, null, "RB"));
-acc.push(new obj.NCAAPlayer("Tee", "Higgins", null, new obj.OffensiveStats(), true, clemsonTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Justyn", "Ross", null, new obj.OffensiveStats(), true, clemsonTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Amari", "Rodgers", null, new obj.OffensiveStats(), true, clemsonTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Clemson", "Defense", null, new obj.DefensiveStats(), true, clemsonTeam, null, "DEF"));
+//NCAA player WR
 
-//Wake Forest Team and Players
-let wakeSchedule = ["Utah State", "Rice", "UNC", "Elon", "Boston College", "BYE", "Louisville", "Florida State", "BYE", "NC State", "Virginia Tech", "Clemson", "Duke", "Syracuse"];
-let wakePic = "pictures/WakeFootball.jpg";
-let wakeTeam = new obj.NCAATeam(wakeSchedule, wakePic, "Wake Forest");
-acc.push(new obj.NCAAPlayer("Jamie", "Newman", null, new obj.OffensiveStats(), true, wakeTeam, null, "QB"));
-acc.push(new obj.NCAAPlayer("Kenneth", "Walker", null, new obj.OffensiveStats(), true, wakeTeam, null, "RB"));
-acc.push(new obj.NCAAPlayer("Cade", "Carney", null, new obj.OffensiveStats(), true, wakeTeam, null, "RB"));
-acc.push(new obj.NCAAPlayer("Sage", "Surratt", null, new obj.OffensiveStats(), true, wakeTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Scotty", "Washington", null, new obj.OffensiveStats(), true, wakeTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Wake Forest", "Defense", null, new obj.DefensiveStats(), true, wakeTeam, null, "DEF"));
+let WR1 = new myObjects.NCAAPlayer("Lebron", "James", "pic here", "stat object", true, "North Carolina", "Timmy object", "WR");
+let WR2 = new myObjects.NCAAPlayer("Michael", "Jordan", "pic here", "stat object", true, "Georgia Tech", "Timmy object", "WR");
+let WR3 = new myObjects.NCAAPlayer("Collin", "Herd", "pic here", "stat object", true, "North Carolina", "Timmy object", "WR");
+let WR4 = new myObjects.NCAAPlayer("Michael", "Thomas", "pic here", "stat object", true, "Duke", "Timmy object", "WR");
+let WR5 = new myObjects.NCAAPlayer("Tiger", "Wood", "pic here", "stat object", true, "Duke", "Timmy object", "WR");
+let WR6 = new myObjects.NCAAPlayer("Anthony", "Davis", "pic here", "stat object", true, "Pitt", "Timmy object", "WR");
+let WR7 = new myObjects.NCAAPlayer("Antonio", "Brown", "pic here", "stat object", true, "Miami", "Timmy object", "WR");
+let WR8 = new myObjects.NCAAPlayer("AJ", "Green", "pic here", "stat object", true, "Syracuse", "Timmy object", "WR");
+let WR9 = new myObjects.NCAAPlayer("Devante", "Adams", "pic here", "stat object", true, "Virginia Tech", "Timmy object", "WR");
+let WR10 = new myObjects.NCAAPlayer("Hollywood", "Brown", "pic here", "stat object", true, "Wake Forest", "Timmy object", "WR");
+let WR11 = new myObjects.NCAAPlayer("Tyreke", "Hills", "pic here", "stat object", true, "Florida State", "Timmy object", "WR");
+let WR12 = new myObjects.NCAAPlayer("Jarvis", "Landry", "pic here", "stat object", true, "NC State", "Timmy object", "WR");
+let WR13 = new myObjects.NCAAPlayer("Jerry", "Rice", "pic here", "stat object", true, "Clemson", "Timmy object", "WR");
 
-//Florida State Team and Players
-let fsuSchedule = ["Boise State", "ULM", "Virginia", "Louisville", "NC State", "BYE", "Clemson", "Wake Forest", "Syracuse", "Miami", "Boston College", "Alabama State", "BYE", "Florida"];
-let fsuPic = "pictures/FSUFootball.jpg";
-let fsuTeam = new obj.NCAATeam(fsuSchedule, fsuPic, "Florida State");
-acc.push(new obj.NCAAPlayer("James", "Blackman", null, new obj.OffensiveStats(), true, fsuTeam, null, "QB"));
-acc.push(new obj.NCAAPlayer("Alex", "Hornibrook", null, new obj.OffensiveStats(), true, fsuTeam, null, "QB"));
-acc.push(new obj.NCAAPlayer("Cam", "Akers", null, new obj.OffensiveStats(), true, fsuTeam, null, "RB"));
-acc.push(new obj.NCAAPlayer("Tamorrion", "Terry", null, new obj.OffensiveStats(), true, fsuTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Keyshawn", "Helton", null, new obj.OffensiveStats(), true, fsuTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Tre'", "McKitty", null, new obj.OffensiveStats(), true, fsuTeam, null, "TE"));
-acc.push(new obj.NCAAPlayer("Florida State", "Defense", null, new obj.DefensiveStats(), true, fsuTeam, null, "DEF"));
+//NCAA player TE
 
-//Louisville Team and Players
-let louisvilleSchedule = ["Notre Dame", "Eastern Kentucky", " WKU", "Florida State", "BYE", "Boston College", "Wake Forest", "Clemson", "Virginia", "BYE", "Miami", "NC State", "Syracuse", "Kentucky"];
-let louisvillePic = "pictures/LouisvilleFootball.jpg";
-let louisvilleTeam = new obj.NCAATeam(louisvilleSchedule, louisvillePic, "Louisville");
-acc.push(new obj.NCAAPlayer("Malik", "Cunningham", null, new obj.OffensiveStats(), true, louisvilleTeam, null, "QB"));
-acc.push(new obj.NCAAPlayer("Jawon", "Pass", null, new obj.OffensiveStats(), true, louisvilleTeam, null, "QB"));
-acc.push(new obj.NCAAPlayer("Javion", "Hawkins", null, new obj.OffensiveStats(), true, louisvilleTeam, null, "RB"));
-acc.push(new obj.NCAAPlayer("Hassan", "Hall", null, new obj.OffensiveStats(), true, louisvilleTeam, null, "RB"));
-acc.push(new obj.NCAAPlayer("Tutu", "Atwell", null, new obj.OffensiveStats(), true, louisvilleTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Dez", "Fitzpatrick", null, new obj.OffensiveStats(), true, louisvilleTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Seth", "Dawkins", null, new obj.OffensiveStats(), true, louisvilleTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Marshon", "Ford", null, new obj.OffensiveStats(), true, louisvilleTeam, null, "TE"));
-acc.push(new obj.NCAAPlayer("Louisville", "Defense", null, new obj.DefensiveStats(), true, louisvilleTeam, null, "DEF"));
+let TE1 = new myObjects.NCAAPlayer("Jimmy", "Graham", "pic here", "stat object", true, "North Carolina", "Timmy object", "TE");
+let TE2 = new myObjects.NCAAPlayer("George", "Kittle", "pic here", "stat object", true, "Georgia Tech", "Timmy object", "TE");
+let TE3 = new myObjects.NCAAPlayer("George", "Washington", "pic here", "stat object", true, "North Carolina", "Timmy object", "TE");
+let TE4 = new myObjects.NCAAPlayer("Kobe", "Bryant", "pic here", "stat object", true, "Duke", "Timmy object", "TE");
+let TE5 = new myObjects.NCAAPlayer("Charles", "Barkley", "pic here", "stat object", true, "Duke", "Timmy object", "TE");
+let TE6 = new myObjects.NCAAPlayer("Steph", "Curry", "pic here", "stat object", true, "Pitt", "Timmy object", "TE");
+let TE7 = new myObjects.NCAAPlayer("Skip", "Bayless", "pic here", "stat object", true, "Miami", "Timmy object", "TE");
+let TE8 = new myObjects.NCAAPlayer("King", "Henry", "pic here", "stat object", true, "Syracuse", "Timmy object", "TE");
+let TE9 = new myObjects.NCAAPlayer("Lauren", "Ammons", "pic here", "stat object", true, "Virginia Tech", "Timmy object", "TE");
+let TE10 = new myObjects.NCAAPlayer("Tommy", "OHern", "pic here", "stat object", true, "Wake Forest", "Timmy object", "TE");
+let TE11 = new myObjects.NCAAPlayer("Kenney", "Smith", "pic here", "stat object", true, "Florida State", "Timmy object", "TE");
+let TE12 = new myObjects.NCAAPlayer("Dwayne", "Wade", "pic here", "stat object", true, "NC State", "Timmy object", "TE");
+let TE13 = new myObjects.NCAAPlayer("Las", "Vegas", "pic here", "stat object", true, "Clemson", "Timmy object", "TE");
 
-//Boston College Team and Players
-let bcSchedule = ["Virginia Tech", "Richmond", "Kansas", "Rutgers", "Wake Forest", "Louisville", "BYE", "NC State", "Clemson", "Syracuse", "Florida State", "BYE", "Notre Dame", "Pitt"];
-let bcPic = "pictures/BCFootball.jpg";
-let bcTeam = new obj.NCAATeam(bcSchedule, bcPic, "Boston College");
-acc.push(new obj.NCAAPlayer("Anthony", "Brown", null, new obj.OffensiveStats(), true, bcTeam, null, "QB"));
-acc.push(new obj.NCAAPlayer("AJ", "Dillon", null, new obj.OffensiveStats(), true, bcTeam, null, "RB"));
-acc.push(new obj.NCAAPlayer("David", "Bailey", null, new obj.OffensiveStats(), true, bcTeam, null, "RB"));
-acc.push(new obj.NCAAPlayer("Zay", "Flowers", null, new obj.OffensiveStats(), true, bcTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Kobay", "White", null, new obj.OffensiveStats(), true, bcTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Hunter", "Long", null, new obj.OffensiveStats(), true, bcTeam, null, "TE"));
-acc.push(new obj.NCAAPlayer("Boston College", "Defense", null, new obj.DefensiveStats(), true, bcTeam, null, "DEF"));
 
-//Syracuse Team and Players
-let syracuseSchedule = ["Liberty", "Maryland", "Clemson", "Western Michigan", "Holy Cross", "BYE", "NC State", "Pitt", "Florida State", "Boston College", "BYE", "Duke", "Louisville", "Wake Forest"];
-let syracusePic = "pictures/SyracuseFootball.jpg";
-let syracuseTeam = new obj.NCAATeam(syracuseSchedule, syracusePic, "Syracuse");
-acc.push(new obj.NCAAPlayer("Tommy", "Devito", null, new obj.OffensiveStats(), true, syracuseTeam, null, "QB"));
-acc.push(new obj.NCAAPlayer("Moe", "Neal", null, new obj.OffensiveStats(), true, syracuseTeam, null, "RB"));
-acc.push(new obj.NCAAPlayer("Abdul", "Adams", null, new obj.OffensiveStats(), true, syracuseTeam, null, "RB"));
-acc.push(new obj.NCAAPlayer("Trishton", "Jackson", null, new obj.OffensiveStats(), true, syracuseTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Taj", "Harris", null, new obj.OffensiveStats(), true, syracuseTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Syracuse", "Defense", null, new obj.DefensiveStats(), true, syracuseTeam, null, "DEF"));
+//NCAA player DEF
 
-//Virginia Team and Players
-let virginiaSchedule = ["Pitt", "William & Mary", "Florida State", "Old Dominion", "Notre Dame", "BYE", "Miami", "Duke", "Louisville", "UNC", "Georgia Tech", "BYE", "Liberty", "Virginia Tech"];
-let virginiaPic = "pictures/VirginiaFootball.jpg";
-let virginiaTeam = new obj.NCAATeam(virginiaSchedule, virginiaPic, "Virginia");
-acc.push(new obj.NCAAPlayer("Bryce", "Perkins", null, new obj.OffensiveStats(), true, virginiaTeam, null, "QB"));
-acc.push(new obj.NCAAPlayer("Wayne", "Taulapapa", null, new obj.OffensiveStats(), true, virginiaTeam, null, "RB"));
-acc.push(new obj.NCAAPlayer("Hasise", "Dubois", null, new obj.OffensiveStats(), true, virginiaTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Joe", "Reed", null, new obj.OffensiveStats(), true, virginiaTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Terrell", "Jana", null, new obj.OffensiveStats(), true, virginiaTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Virginia", "Defense", null, new obj.DefensiveStats(), true, virginiaTeam, null, "DEF"));
+let DEF1 = new myObjects.NCAAPlayer("Defense", "North Carolina", "pic here", "stat object", true, "North Carolina", "Timmy object", "DEF");
+let DEF2 = new myObjects.NCAAPlayer("Defense", "NC State", "pic here", "stat object", true, "NC State", "Timmy object", "DEF");
+let DEF3 = new myObjects.NCAAPlayer("Defense", "Duke", "pic here", "stat object", true, "Duke", "Timmy object", "DEF");
+let DEF4 = new myObjects.NCAAPlayer("Defense", "Georgia Tech", "pic here", "stat object", true, "Georgia Tech", "Timmy object", "DEF");
+let DEF5 = new myObjects.NCAAPlayer("Defense", "Miami", "pic here", "stat object", true, "Miami", "Timmy object", "DEF");
+let DEF6 = new myObjects.NCAAPlayer("Defense", "Pittsburgh", "pic here", "stat object", true, "Pitt", "Timmy object", "DEF");
+let DEF7 = new myObjects.NCAAPlayer("Defense", "UVA", "pic here", "stat object", true, "UVA", "Timmy object", "DEF");
+let DEF8 = new myObjects.NCAAPlayer("Defense", "Virginia Tech", "pic here", "stat object", true, "Virginia Tech", "Timmy object", "DEF");
+let DEF9 = new myObjects.NCAAPlayer("Defense", "Boston College", "pic here", "stat object", true, "Boston College", "Timmy object", "DEF");
+let DEF10 = new myObjects.NCAAPlayer("Defense", "FSU", "pic here", "stat object", true, "FSU", "Timmy object", "DEf");
+let DEF11 = new myObjects.NCAAPlayer("Defense", "Louisville", "pic here", "stat object", true, "Louisville", "Timmy object", "DEf");
+let DEF12 = new myObjects.NCAAPlayer("Defense", "Notre Dame", "pic here", "stat object", true, "Notre Dame", "Timmy object", "DEF");
+let DEF13 = new myObjects.NCAAPlayer("Defense", "Syracuse", "pic here", "stat object", true, "Syracuse", "Timmy object", "DEF");
+let DEF13 = new myObjects.NCAAPlayer("Defense", "Wake Forest", "pic here", "stat object", true, "Wake Forest", "Timmy object", "DEF");
 
-//Pitt Team and Players
-let pittSchedule = ["Virginia", "Ohio", "Penn State", "UCF", "Delaware", "Duke", "BYE", "Syracuse", "Miami", "Georgia Tech", "BYE", "UNC", "Virginia Tech", "Boston College"];
-let pittPic = "pictures/PittFootball.jpg";
-let pittTeam = new obj.NCAATeam(pittSchedule, pittPic, "Pitt");
-acc.push(new obj.NCAAPlayer("Kenny", "Pickett", null, new obj.OffensiveStats(), true, pittTeam, null, "QB"));
-acc.push(new obj.NCAAPlayer("Todd", "Sibley", null, new obj.OffensiveStats(), true, pittTeam, null, "RB"));
-acc.push(new obj.NCAAPlayer("AJ", "Davis", null, new obj.OffensiveStats(), true, pittTeam, null, "RB"));
-acc.push(new obj.NCAAPlayer("Taysir", "Mack", null, new obj.OffensiveStats(), true, pittTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Maurice", "Ffrench", null, new obj.OffensiveStats(), true, pittTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Pitt", "Defense", null, new obj.DefensiveStats(), true, pittTeam, null, "DEF"));
-
-//Virginia Tech Team and Players
-let vtSchedule = ["Boston College", "Old Dominion", "Fulman", "BYE", "Duke", "Miami", "Rhode Island", "UNC", "BYE", "Notre Dame", "Wake Forest", "Georgia Tech", "Pitt", "Virginia"];
-let vtPic = "pictures/VTFootball.jpg";
-let vtTeam = new obj.NCAATeam(vtSchedule, vtPic, "Virginia Tech");
-acc.push(new obj.NCAAPlayer("Ryan", "Willis", null, new obj.OffensiveStats(), true, vtTeam, null, "QB"));
-acc.push(new obj.NCAAPlayer("Deshawn", "McClease", null, new obj.OffensiveStats(), true, vtTeam, null, "RB"));
-acc.push(new obj.NCAAPlayer("Keshawn", "King", null, new obj.OffensiveStats(), true, vtTeam, null, "RB"));
-acc.push(new obj.NCAAPlayer("Tayvion", "Robinson", null, new obj.OffensiveStats(), true, vtTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Virginia Tech", "Defense", null, new obj.DefensiveStats(), true, vtTeam, null, "DEF"));
-
-//Miami Team and Players
-let miamiSchedule = ["Florida", "UNC", "Bethune-Cookman", "Central Michigan", "BYE", "Virginia Tech", "Virginia", "Georgia Tech", "Pitt", "FLorida State", "Louisville", "BYE", "FIU", "Duke"];
-let miamiPic = "pictures/MiamiFootball.jpg";
-let miamiTeam = new obj.NCAATeam(miamiSchedule, miamiPic, "Miami");
-acc.push(new obj.NCAAPlayer("Jarren", "Williams", null, new obj.OffensiveStats(), true, miamiTeam, null, "QB"));
-acc.push(new obj.NCAAPlayer("N'Kosi", "Perry", null, new obj.OffensiveStats(), true, miamiTeam, null, "QB"));
-acc.push(new obj.NCAAPlayer("DeeJay", "Dallas", null, new obj.OffensiveStats(), true, miamiTeam, null, "RB"));
-acc.push(new obj.NCAAPlayer("Mike", "Harley", null, new obj.OffensiveStats(), true, miamiTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("KJ", "Osborn", null, new obj.OffensiveStats(), true, miamiTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Jeff", "Thomas", null, new obj.OffensiveStats(), true, miamiTeam, null, "WR"));
-acc.push(new obj.NCAAPlayer("Brevin", "Jordan", null, new obj.OffensiveStats(), true, miamiTeam, null, "TE"));
-acc.push(new obj.NCAAPlayer("Miami", "Defense", null, new obj.DefensiveStats(), true, miamiTeam, null, "DEF"));
-
-//Georgia Tech Team and Players
-let gtSchedule = ["Clemson", "USF", "Citadel", "BYE", "Temple", "UNC", "Duke", "Miami", "BYE", "Pitt", "Virginia", ,"Virginia Tech", "NC State", "Georgia"];
-let gtPic = "pictures/GTFootball.jpg";
-let gtTeam = new obj.NCAATeam(gtSchedule, gtPic, "Georgia Tech");
-acc.push(new obj.NCAAPlayer("James", "Graham", null, new obj.OffensiveStats(), true, gtTeam, null, "QB"));
-acc.push(new obj.NCAAPlayer("Jordan", "Mason", null, new obj.OffensiveStats(), true, gtTeam, null, "RB"));
-acc.push(new obj.NCAAPlayer("Georgia Tech", "Defense", null, new obj.DefensiveStats(), true, gtTeam, null, "DEF"));
-
-//Compile roster for team
-function getRoster(teamName) {
-    let a = [];
-    for (let i = 0; i < acc.length; i++) {
-        if (acc[i].ncaaTeam.name == teamName) {
-            a.push(acc[i]);
-        }
-    }
-    return a;
-}
-
-//Get all of a position from a roster
-function filterPos(position, array) {
-    for (let i=0; i < array.length; i++) {
-        if (array[i].position == position) {
-            console.log(array[i].first + " " + array[i].last);
-        }
-    }
-}
-
-//Get Opponent of Player in a given week
-function getOpp(player, week) {
-    console.log(player.ncaaTeam.weeks[week-1]);
-}
-
-//Find Player by full name
-function findPlayer(name) {
-    for (let i = 0; i < acc.length; i++) {
-        if ((acc[i].first + " " + acc[i].last) == name) {
-            return acc[i];
-        }
-    }
-}
-
-//Update Stats - inputs player full name, the string of stat to update, and how much to set it to
-function updateStats(name, stat, number) {
-    let player = findPlayer(name);
-    player.stats[stat] = number;
-}
-
-//Add Stats - inputs player full name, the string of stat to update, and how much to add it to
-function addStats(name, stat, number) {
-    let player = findPlayer(name);
-    player.stats[stat] += number;
-}
+//League Player
+let leaguePlayer1 = new myObjects.LeaguePlayer("Pandas", "David", "picture", "stats", "schedule", )

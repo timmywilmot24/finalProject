@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>League</title>
+
+        <!-- Include links to CSS stylesheets below -->
+        <link rel="stylesheet" type="text/css" href="leagueStyle.css">
+        <!-- TODO (optional): Add link to bulma here -->
+    </head>
+
+    <body>
+        <div id="root"> 
+            <div class ="navBar">
+                <a href="league.html">League</a>
+                <a href="team.html">Team</a>
+                <a href="matchup.html">Matchups</a>
+                <a href="players.html">Players</a>
+            </div>
+
+            <div id = "leaderBoard">
+                <h2>Leader Board</h2>
+                <div id = "lbContent">
+                    <table id = lbTable>
+                        <tr id = "lbHeadings">
+                            <th>Rank</th>
+                            <th>Team</th>
+                            <th>W/L</th>
+                            <th>Points For</th>
+                            <th>Points Against</th>
+                        </tr>
+                        <!-- these tr are for testing will make function in javascript to create them dynamically-->
+                        <tr id = "team1">
+                            <td>1</td>
+                            <td>JackDaughter</td>
+                            <td>4-1</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr id = "team2">
+                            <td>2</td>
+                            <td>Pandas</td>
+                            <td>3-2</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr id = "team3">
+                            <td>3</td>
+                            <td>TheZekeFreak</td>
+                            <td>3-2</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr id = "team4">
+                            <td>4</td>
+                            <td>The Highwaymen</td>
+                            <td>3-2</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr id = "team5"> 
+                            <td>5</td>
+                            <td>Yellow Power</td>
+                            <td>2-3</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr id = "team6">
+                            <td>6</td>
+                            <td>Goff Balls</td>
+                            <td>2-3</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr id = "team7">
+                            <td>7</td>
+                            <td>America's Team</td>
+                            <td>2-3</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr id = "team8">
+                            <td>8</td>
+                            <td>Kenny Williams Fan Club</td>
+                            <td>2-3</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div id = "matchups"> 
+                <h2>Matchups</h2>
+                <div id = mContent>
+                    <table id = mTable>
+                    
+                        <tr class = "match">
+                            <td>Team1 and points here</td>
+                            <td>VS</td>
+                            <td>Team2 and points here</td>
+                        </tr>
+
+                        <tr class = "match">
+                            <td>Team1 and points here</td>
+                            <td>VS</td>
+                            <td>Team2 and points here</td>
+                        </tr>
+                        
+                        <tr class = "match">
+                            <td>Team1 and points here</td>
+                            <td>VS</td>
+                            <td>Team2 and points here</td>
+                        </tr>
+
+                        <tr id = "match">
+                            <td>Team1 and points here</td>
+                            <td>VS</td>
+                            <td>Team2 and points here</td>
+                        </tr>
+
+                        <tr id = "match">
+                            <td>Team1 and points here</td>
+                            <td>VS</td>
+                            <td>Team2 and points here</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div id = "transactions"> 
+                <h2>Transactions</h2>
+                <div id = "tContent">
+                    <!--Example transactions below will need to create dynamically in js-->
+                    <div>
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Include links to JavaScript files below -->
+        <!-- TODO: Add link to jQuery here -->
+        <!-- <script src="node_modules/jquery/dist/jquery.js"></script>
+        <script src="data.js"></script>
+        <script src="render.js" type="module"></script> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="renderLeague.js"></script>
+    </body>
+</html>

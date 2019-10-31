@@ -11,10 +11,9 @@ export function NCAAPlayer(first, last, picture, stats, onTeam, ncaaTeam, league
 }
 
 //This is a constructor that creates the NCAA teams (UNC)
-export function NCAATeam(weeks, logo, name) {
+export function NCAATeam(weeks, logo) {
     this.weeks = weeks; //Array of schedule
     this.logo = logo; //Img of team logo
-    this.name = name; //String
 }
 
 //This is a constructor that creates individual league players (Timmy Wilmot)
@@ -69,37 +68,22 @@ export function League(schedule, player1, player2, player3, player4, player5, pl
 }
 
 //This is a constructor that creates the OffensiveStats object (Sam Howell's Stats)
-export function OffensiveStats() {
-    this.yardsAirTotal = 0; //Integer
-    this.yardsGroundTotal = 0; //Integer
-    this.yardsCatchTotal = 0; //Integer
-    this.catchesTotal = 0; //Integer
-    this.intThrownTotal = 0; //Integer
-    this.fumblesLostTotal = 0; //Integer
-    this.touchdownsAirTotal = 0; //Integer
-    this.touchdownsGroundTotal = 0; //Integer
-    this.yardsAirCurrent = 0; //Integer
-    this.yardsGroundCurrent = 0; //Integer
-    this.yardsCatchCurrent = 0; //Integer
-    this.catchesCurrent = 0; //Integer
-    this.intThrownCurrent = 0; //Integer
-    this.fumblesLostCurrent = 0; //Integer
-    this.touchdownsAirCurrent = 0; //Integer
-    this.tochdownsGroundCurrent - 0; //Integer
+export function OffensiveStats(yardsAir, yardsGround, yardsCatch, catches, intThrown, fumblesLost, touchdowns) {
+    this.yardsAir = yardsAir; //Integer
+    this.yardsGround = yardsGround; //Integer
+    this.yardsCatch = yardsCatch; //Integer
+    this.catches = catches; //Integer
+    this.intThrown = intThrown; //Integer
+    this.fumblesLost = fumblesLost; //Integer
+    this.touchdowns = touchdowns; //Integer
 }
 
 //This is a constructor that creates the DefensiveStats object (Sam Howell's Stats)
-export function DefensiveStats() {
-    this.interceptionsTotal = 0; //Integer
-    this.fumblesRecTotal = 0; //Integer
-    this.touchdownsTotal = 0; //Integer
-    this.pointsAgTotal = 0; //Integer
-    this.sacksTotal = 0; //Integer
-    this.safetiesTotal = 0; //Integer
-    this.interceptionsCurrent = 0; //Integer
-    this.fumblesRecCurrent = 0; //Integer
-    this.touchdownsCurrent = 0; //Integer
-    this.pointsAgCurrent = 0; //Integer
-    this.sacksCurrent = 0; //Integer
-    this.safetiesCurrent = 0; //Integer
+export function DefensiveStats(interceptions, fumblesRec, touchdowns, pointsAg, sacks, safeties) {
+    this.interceptions = interceptions; //Integer
+    this.fumblesRec = fumblesRec; //Integer
+    this.touchdowns = touchdowns; //Integer
+    this.pointsAg = pointsAg; //Integer
+    this.sacks = sacks; //Integer
+    this.safeties = safeties; //Integer
 }
