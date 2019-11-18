@@ -48,7 +48,7 @@ let getSchedule = function() {
                         })
                     } else if (weeks[i].games[j].away == teamAbb[k]) {
                         pubRoot.post(`/teams/` + fullTeams[k] + `/schedule/` + (i+1).toString(), {
-                            "data": weeks[i].games[j].home,
+                            "data": "@" + weeks[i].games[j].home,
                         })
                     }
                 }
