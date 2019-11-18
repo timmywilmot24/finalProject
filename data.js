@@ -43,14 +43,12 @@ let getSchedule = function() {
             for (let j = 0; j < weeks[i].games.length; j++) {
                 for (let k = 0; k < fullTeams.length; k++) {
                     if (weeks[i].games[j].home == teamAbb[k]) {
-                        pubRoot.post(`/teams/` + fullTeams[k] + `/schedule`, {
+                        pubRoot.post(`/teams/` + fullTeams[k] + `/schedule/` + (i+1).toString(), {
                             "data": weeks[i].games[j].away,
-                            "type": "merge",
                         })
                     } else if (weeks[i].games[j].away == teamAbb[k]) {
-                        pubRoot.post(`/teams/` + fullTeams[k] + `/schedule`, {
+                        pubRoot.post(`/teams/` + fullTeams[k] + `/schedule/` + (i+1).toString(), {
                             "data": weeks[i].games[j].home,
-                            "type": "merge",
                         })
                     }
                 }
