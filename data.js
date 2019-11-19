@@ -65,3 +65,21 @@ let getSchedule = async function() {
     });
 }
 getSchedule();
+
+let addByes = async function() {
+   for (let i = 0; i < fullTeams.length; i++) {
+        let schedule = await pubRoot.get("/teams/" + fullTeams[i] + "/schedule/");
+        let sched = schedule.data.result;
+        let schedCount = 0;
+        for (let j = 1; j < 15; j++) {
+            if (sched[schedCount] != j.toString()) {
+                pubRoot.post("/teams/" + fullTeams[i] + "/schedule/" + j, {
+                    data: "BYE",
+                })
+                schedCount--;
+            }
+            schedCount++;
+        }
+   }
+}
+addByes();
