@@ -83,3 +83,85 @@ let addByes = async function() {
    }
 }
 addByes();
+
+
+let getStats = async function() {
+    // for (let i = 1; i < 15; i++) {
+        await axios({
+            method: "get",
+            url: "https://api.collegefootballdata.com/games/players?year=2019&week=" + 1 + "&seasonType=regular&conference=ACC",
+        }).then(data => {
+            //console.log(data.data);
+            for (let j = 0; j < data.data.length; j++) {
+                let game = data.data[j];
+                if(game.teams[0].conference == "ACC") {
+                    let teamStat = game.teams[0].categories;
+                    let receiving = 0;
+                    let rushing = 0;
+                    let passing = 0;
+
+                    let rtd = 0;
+                    let ryd = 0;
+                    let rec = 0;
+
+                    let runtd = 0;
+                    let runyd = 0;
+                    
+                    let ptd = 0;
+                    let pyd = 0;
+
+                    for (let k = 0; k < teamStat.length; k++) {
+                        if (teamStat[k].name == "receiving") {
+                            let receiving = teamStat[k];
+                            rtd = receiving.types[1];
+                            ryd = receiving.types[3];
+                            rec = receiving.types[4];
+                        } else if (teamStat[k].name == "rushing") {
+                            let rushing = teamStat[k];
+                            runtd = rushing.types[1];
+                            runyd = rushing.types[3];
+                        } else if (teamStat[k].name == "passing") {
+                            let passing = teamStat[k];
+                            ptd = passing.types[2];
+                            pyd = passing.types[4];
+                        } 
+                    }
+                    
+                };
+                if(game.teams[1].conference == "ACC") {
+                    let teamStat = game.teams[1].categories;
+                    let receiving = 0;
+                    let rushing = 0;
+                    let passing = 0;
+
+                    let rtd = 0;
+                    let ryd = 0;
+                    let rec = 0;
+
+                    let runtd = 0;
+                    let runyd = 0;
+                    
+                    let ptd = 0;
+                    let pyd = 0;
+                    for (let k = 0; k < teamStat.length; k++) {
+                        if (teamStat[k].name == "receiving") {
+                            let receiving = teamStat[k];
+                            rtd = receiving.types[1];
+                            ryd = receiving.types[3];
+                            rec = receiving.types[4];
+                        } else if (teamStat[k].name == "rushing") {
+                            let rushing = teamStat[k];
+                            runtd = rushing.types[1];
+                            runyd = rushing.types[3];
+                        } else if (teamStat[k].name == "passing") {
+                            let passing = teamStat[k];
+                            ptd = passing.types[2];
+                            pyd = passing.types[4];
+                        } 
+                    }
+                }
+            }
+        });
+    // }
+}
+getStats();
