@@ -191,9 +191,10 @@ export const getPlayers = async function() {
                     let first = d[players].first_name;
                     let last  = d[players].last_name;
                     let jersey = d[players].jersey;
-                    let id = first+"_"+teamURL[a]+"_"+last;
+                    let id = d[players].id;
+                    let stats = createStatObject();
                     pubRoot.post(`/players/`+ id, {
-                        data: {"first": first, "last": last, "position" : position, "jersey": jersey, "statsPerWeek": {}, "team": allTeams[a]}
+                        data: {"first": first, "last": last, "position" : position, "jersey": jersey, "team": allTeams[a], "statsPerWeek": stats}
                     });
                    
                 };
@@ -201,3 +202,22 @@ export const getPlayers = async function() {
         });
     };    
 };
+
+export const createStatObject = function() {
+    let statsPerWeek = {};
+    let stat = {
+        passyd: 0,
+        passtd: 0,
+        runyd: 0,
+        runtd: 0,
+        recyd: 0,
+        recytd: 0,
+        rec: 0
+    }
+    for (let i = 1; i < 15; i++) {
+        statsPerWeek[i] = stat;
+    }
+    return statsPerWeek;
+};
+
+getPlayers();
