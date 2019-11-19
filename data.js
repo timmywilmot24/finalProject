@@ -165,3 +165,39 @@ let getStats = async function() {
     // }
 }
 getStats();
+
+export const getPlayers = async function() {
+    let teamURL = ["clemson", "syracuse", "nc%20state", 
+    "duke", "virginia", "boston%20college", 
+    "wake%20forest", "georgia%20tech", "miami", 
+    "pittsburgh", "virginia%20tech", "florida%20state",
+    "north%20carolina", "louisville"];
+
+    let allTeams = ["Clemson", "Syracuse", "North Carolina State", 
+    "Duke", "Virginia", "Boston College", "Wake Forest", 
+    "Georgia Tech", "Miami", "Pittsburgh", "Virginia Tech", 
+    "Florida State", "North Carolina", "Louisville"];
+
+    for (let a = 0; a < fullTeams.length; a++) {
+        await axios({
+            method: "get",
+            url: "https://api.collegefootballdata.com/roster?team=" + teamURL[a]
+        }).then(data => {
+            let d = data.data;
+            let l = Object.keys(d).length;
+            for (let players = 0; players < l; players++) {
+                let position = d[players].position;
+                if (position == "QB" || position == "RB" || position == "WR" || position == "TE") {
+                    let first = d[players].first_name;
+                    let last  = d[players].last_name;
+                    let jersey = d[players].jersey;
+                    let id = first+"_"+teamURL[a]+"_"+last;
+                    pubRoot.post(`/players/`+ id, {
+                        data: {"first": first, "last": last, "position" : position, "jersey": jersey, "statsPerWeek": {}, "team": allTeams[a]}
+                    });
+                   
+                };
+            };
+        });
+    };    
+};
