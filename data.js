@@ -86,12 +86,11 @@ addByes();
 
 
 let getStats = async function() {
-    // for (let i = 1; i < 15; i++) {
+    for (let i = 1; i < 13; i++) {
         await axios({
             method: "get",
-            url: "https://api.collegefootballdata.com/games/players?year=2019&week=" + 1 + "&seasonType=regular&conference=ACC",
+            url: "https://api.collegefootballdata.com/games/players?year=2019&week=" + i + "&seasonType=regular&conference=ACC",
         }).then(data => {
-            //console.log(data.data);
             for (let j = 0; j < data.data.length; j++) {
                 let game = data.data[j];
                 if(game.teams[0].conference == "ACC") {
@@ -113,20 +112,49 @@ let getStats = async function() {
                     for (let k = 0; k < teamStat.length; k++) {
                         if (teamStat[k].name == "receiving") {
                             let receiving = teamStat[k];
-                            rtd = receiving.types[1];
-                            ryd = receiving.types[3];
-                            rec = receiving.types[4];
+                            for (let t = 0; t < receiving.types.length; t++) {
+                                if (receiving.types[t].name == "TD") {
+                                    rtd = receiving.types[t].athletes;
+                                } else if (receiving.types[t].name == "YDS") {
+                                    ryd = receiving.types[t].athletes;
+                                } else if (receiving.types[t].name == "REC") {
+                                    rec = receiving.types[t].athletes;
+                                }
+                            }
                         } else if (teamStat[k].name == "rushing") {
                             let rushing = teamStat[k];
-                            runtd = rushing.types[1];
-                            runyd = rushing.types[3];
+                            for (let t = 0; t < rushing.types.length; t++) {
+                                if (rushing.types[t].name == "TD") {
+                                    runtd = rushing.types[t].athletes;
+                                } else if (rushing.types[t].name == "YDS") {
+                                    runyd = rushing.types[t].athletes;
+                                }
+                            }
                         } else if (teamStat[k].name == "passing") {
                             let passing = teamStat[k];
-                            ptd = passing.types[2];
-                            pyd = passing.types[4];
+                            for (let t = 0; t < passing.types.length; t++) {
+                                if (passing.types[t].name == "TD") {
+                                    ptd = passing.types[t].athletes;
+                                } else if (passing.types[t].name == "YDS") {
+                                    pyd = passing.types[t].athletes;
+                                }
+                            }
                         } 
                     }
-                    
+
+                    let tempStats = {};
+                    updateStat(rtd, "rtd", tempStats);
+                    updateStat(ryd, "ryd", tempStats);
+                    updateStat(rec, "rec", tempStats);
+                    updateStat(runtd, "runtd", tempStats);
+                    updateStat(runyd, "runyd", tempStats);
+                    updateStat(ptd, "ptd", tempStats);
+                    updateStat(pyd, "pyd", tempStats);
+                    for (let key in tempStats) {
+                        pubRoot.post("/players/" + key + "/statsPerWeek/" + i, {
+                            data: tempStats[key],
+                        });
+                    }                 
                 };
                 if(game.teams[1].conference == "ACC") {
                     let teamStat = game.teams[1].categories;
@@ -146,23 +174,54 @@ let getStats = async function() {
                     for (let k = 0; k < teamStat.length; k++) {
                         if (teamStat[k].name == "receiving") {
                             let receiving = teamStat[k];
-                            rtd = receiving.types[1];
-                            ryd = receiving.types[3];
-                            rec = receiving.types[4];
+                            for (let t = 0; t < receiving.types.length; t++) {
+                                if (receiving.types[t].name == "TD") {
+                                    rtd = receiving.types[t].athletes;
+                                } else if (receiving.types[t].name == "YDS") {
+                                    ryd = receiving.types[t].athletes;
+                                } else if (receiving.types[t].name == "REC") {
+                                    rec = receiving.types[t].athletes;
+                                }
+                            }
                         } else if (teamStat[k].name == "rushing") {
                             let rushing = teamStat[k];
-                            runtd = rushing.types[1];
-                            runyd = rushing.types[3];
+                            for (let t = 0; t < rushing.types.length; t++) {
+                                if (rushing.types[t].name == "TD") {
+                                    runtd = rushing.types[t].athletes;
+                                } else if (rushing.types[t].name == "YDS") {
+                                    runyd = rushing.types[t].athletes;
+                                }
+                            }
                         } else if (teamStat[k].name == "passing") {
                             let passing = teamStat[k];
-                            ptd = passing.types[2];
-                            pyd = passing.types[4];
-                        } 
+                            for (let t = 0; t < passing.types.length; t++) {
+                                if (passing.types[t].name == "TD") {
+                                    ptd = passing.types[t].athletes;
+                                } else if (passing.types[t].name == "YDS") {
+                                    pyd = passing.types[t].athletes;
+                                }
+                            }
+                        }
                     }
+                    
+                    let tempStats = {};
+                    updateStat(ptd, "ptd", tempStats);
+                    updateStat(pyd, "pyd", tempStats);
+                    updateStat(rtd, "rtd", tempStats);
+                    updateStat(ryd, "ryd", tempStats);
+                    updateStat(rec, "rec", tempStats);
+                    updateStat(runtd, "runtd", tempStats);
+                    updateStat(runyd, "runyd", tempStats);
+                   
+                    for (let key in tempStats) {
+                        pubRoot.post("/players/" + key + "/statsPerWeek/" + i, {
+                            data: tempStats[key],
+                        });
+                    }   
                 }
             }
         });
-    // }
+    }
 }
 getStats();
 
