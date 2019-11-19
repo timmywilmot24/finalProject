@@ -221,3 +221,128 @@ export const createStatObject = function() {
 };
 
 getPlayers();
+
+let getStats = async function() {
+    for (let i = 1; i < 13; i++) {
+        await axios({
+            method: "get",
+            url: "https://api.collegefootballdata.com/games/players?year=2019&week=" + i + "&seasonType=regular&conference=ACC",
+        }).then(data => {
+            for (let j = 0; j < data.data.length; j++) {
+                let game = data.data[j];
+                if(game.teams[0].conference == "ACC") {
+                    let teamStat = game.teams[0].categories;
+                    let receiving = 0;
+                    let rushing = 0;
+                    let passing = 0;
+
+                    let rtd = 0;
+                    let ryd = 0;
+                    let rec = 0;
+
+                    let runtd = 0;
+                    let runyd = 0;
+                    
+                    let ptd = 0;
+                    let pyd = 0;
+
+                    for (let k = 0; k < teamStat.length; k++) {
+                        if (teamStat[k].name == "receiving") {
+                            let receiving = teamStat[k];
+                            rtd = receiving.types[1].athletes;
+                            ryd = receiving.types[3].athletes;
+                            rec = receiving.types[4].athletes;
+                        } else if (teamStat[k].name == "rushing") {
+                            let rushing = teamStat[k];
+                            runtd = rushing.types[1].athletes;
+                            runyd = rushing.types[3].athletes;
+                        } else if (teamStat[k].name == "passing") {
+                            let passing = teamStat[k];
+                            ptd = passing.types[2].athletes;
+                            pyd = passing.types[4].athletes;
+                        } 
+                    }
+
+                    let tempStats = {};
+                    updateStat(rtd, "rtd", tempStats);
+                    updateStat(ryd, "ryd", tempStats);
+                    updateStat(rec, "rec", tempStats);
+                    updateStat(runtd, "runtd", tempStats);
+                    updateStat(runyd, "runyd", tempStats);
+                    updateStat(ptd, "ptd", tempStats);
+                    updateStat(pyd, "pyd", tempStats);
+                    for (let key in tempStats) {
+                        pubRoot.post("/players/" + key + "/statsPerWeek/" + i, {
+                            data: tempStats[key],
+                        });
+                    }                 
+                };
+                if(game.teams[1].conference == "ACC") {
+                    let teamStat = game.teams[1].categories;
+                    let receiving = 0;
+                    let rushing = 0;
+                    let passing = 0;
+
+                    let rtd = 0;
+                    let ryd = 0;
+                    let rec = 0;
+
+                    let runtd = 0;
+                    let runyd = 0;
+                    
+                    let ptd = 0;
+                    let pyd = 0;
+                    for (let k = 0; k < teamStat.length; k++) {
+                        if (teamStat[k].name == "receiving") {
+                            let receiving = teamStat[k];
+                            rtd = receiving.types[1].athletes;
+                            ryd = receiving.types[3].athletes;
+                            rec = receiving.types[4].athletes;
+                        } else if (teamStat[k].name == "rushing") {
+                            let rushing = teamStat[k];
+                            runtd = rushing.types[1].athletes;
+                            runyd = rushing.types[3].athletes;
+                        } else if (teamStat[k].name == "passing") {
+                            let passing = teamStat[k];
+                            ptd = passing.types[2].athletes;
+                            pyd = passing.types[4].athletes;
+                        } 
+                    }
+                    
+                    let tempStats = {};
+                    updateStat(rtd, "rtd", tempStats);
+                    updateStat(ryd, "ryd", tempStats);
+                    updateStat(rec, "rec", tempStats);
+                    updateStat(runtd, "runtd", tempStats);
+                    updateStat(runyd, "runyd", tempStats);
+                    updateStat(ptd, "ptd", tempStats);
+                    updateStat(pyd, "pyd", tempStats);
+                    for (let key in tempStats) {
+                        pubRoot.post("/players/" + key + "/statsPerWeek/" + i, {
+                            data: tempStats[key],
+                        });
+                    }   
+                }
+            }
+        });
+    }
+}
+ getStats();
+const updateStat = function(runtd, type, tempStats) {
+    for (let z = 0; z < runtd.length; z++) {
+        if (runtd[z].id > 0) {
+            if(tempStats[runtd[z].id] == undefined) {
+                tempStats[runtd[z].id] = {
+                    pyd: 0,
+                    ptd: 0,
+                    runyd: 0,
+                    runtd: 0,
+                    ryd: 0,
+                    rtd: 0,
+                    rec: 0,
+                }
+            }
+            tempStats[runtd[z].id][type] = parseInt(runtd[z].stat);
+        }
+    }
+}
