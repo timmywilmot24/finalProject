@@ -214,13 +214,29 @@ export const getAllTeams = async function() {
     return teams.data;
 };
 
+let addByes = async function() {
+   for (let i = 0; i < fullTeams.length; i++) {
+        let schedule = await pubRoot.get("/teams/" + fullTeams[i] + "/schedule/");
+        let sched = schedule.data.result;
+        let schedCount = 0;
+        for (let j = 1; j < 15; j++) {
+            if (sched[schedCount] != j.toString()) {
+                pubRoot.post("/teams/" + fullTeams[i] + "/schedule/" + j, {
+                    data: "BYE",
+                })
+                schedCount--;
+            }
+            schedCount++;
+        }
+   }
+}
 //pubRoot.delete(`/players`);
 //pubRoot.delete(`/teams`);
 //getPlayers();
 //getStats();
 //getTeams();
 //getSchedule();
-
+//addByes();
 
 
 
