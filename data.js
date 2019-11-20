@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 
-let fullTeams = ["Clemson", "Syracuse", "North Carolina State", 
+let fullTeams = ["Clemson", "Syracuse", "NC State", 
 "Duke", "Virginia", "Boston College", "Wake Forest", "Georgia Tech", 
 "Miami", "Pittsburgh", "Virginia Tech", "Florida State", "North Carolina", "Louisville"];
 
