@@ -7,22 +7,25 @@ export const loadConferences = function(week) {
 }
 
 export const loadCoastal = function(week) {
-    let panel = $('<div id="coastal"></div>').append("Coastal").css({
+    let coa = $('<div class="is-size-4">Coastal</div>').css({
+        "padding-bottom": "12px",
+        "padding-top": "12px"
+    });
+    let panel = $('<div id="coastal"></div>').append(coa).css({
         "text-align": "center",
-        "width": "40%",
+        "width": "45%",
         "display": "inline-block",
-        "margin-left": "5%",
-        "margin-right": "5%",
+        "margin-left": "2.5%",
+        "margin-right": "2.5%",
     });
-    let categories = $('<div></div>').css({
-        "text-align": "left",
-    });
+    let categories = $('<div></div>');
     let rank = $('<div></div>').append("Rank").css({
-        "width": "10%",
+        "width": "5%",
         "display": "inline-block",
+        "padding-left": "10px"
     });
     let team = $('<div></div>').append("Teams").css({
-        "width": "35%",
+        "width": "40%",
         "display": "inline-block",
     });
     let record = $('<div></div>').append("Team Record").css({
@@ -48,22 +51,25 @@ export const loadCoastal = function(week) {
 }
 
 export const loadAtlantic = function(week) {
-    let panel = $('<div id="atlantic"></div>').append("Atlantic").css({
+    let atl = $('<div class="is-size-4">Atlantic</div>').css({
+        "padding-bottom": "12px",
+        "padding-top": "12px"
+    });
+    let panel = $('<div id="atlantic"></div>').append(atl).css({
         "text-align": "center",
-        "width": "40%",
+        "width": "45%",
         "display": "inline-block",
-        "margin-left": "5%",
-        "margin-right": "5%",
+        "margin-left": "2.5%",
+        "margin-right": "2.5%",
     });
-    let categories = $('<div></div>').css({
-        "text-align": "left",
-    });
+    let categories = $('<div></div>');
     let rank = $('<div></div>').append("Rank").css({
-        "width": "10%",
+        "width": "5%",
         "display": "inline-block",
+        "padding-left": "10px"
     });
     let team = $('<div></div>').append("Teams").css({
-        "width": "35%",
+        "width": "40%",
         "display": "inline-block",
     });
     let record = $('<div></div>').append("Team Record").css({
@@ -111,18 +117,22 @@ let makeTeams = function(division, data, week) {
 }
 export const renderTeamCard = function(team, week, rank) {
     let teamDiv = $('<div></div>').css({
-        "text-align": "left",
+        "text-align": "center",
+        "border-style": "solid",
+        "border-radius": "8px",
+        "border-color": "black",
+        "margin-top": "12px",
+        "padding-top": "12px",
+        "margin-bottom": "12px",
+        "padding-bottom": "12px",
+        "padding-left": "8px"
     });
     let ranks = $('<div></div>').append(rank+1).css({
-        "width": "10%",
+        "width": "5%",
         "display": "inline-block",
     });
-    let teamFirstName = $('<div></div>').append(team.teamCity).css({
-        "width": "35%",
-        "display": "inline-block",
-    });
-    let teamLastName = $('<div></div>').append(team.teamName).css({
-        "width": "35%",
+    let teamName = $('<div></div>').append(team.teamCity + " " + team.teamName).css({
+        "width": "40%",
         "display": "inline-block",
     });
     let wins = 0;
@@ -131,7 +141,7 @@ export const renderTeamCard = function(team, week, rank) {
     for (let i = 1; i < week; i++) {
         if (sched[i].thisScore > sched[i].oppScore) {
             wins++;
-        } else {
+        } else if (sched[i].thisScore < sched[i].oppScore) {
             losses++;
         }
     }
@@ -139,17 +149,14 @@ export const renderTeamCard = function(team, week, rank) {
     let recordDiv = $('<div></div>').append(record).css({
         "width": "20%",
         "display": "inline-block",
-    });
-    let blank = $('<div></div>').css({
-        "width": "10%",
-        "display": "inline-block",
+        "text-align": "center"
     });
     let opponent = sched[week].opponent;
     let oppDiv = $('<div></div>').append(opponent).css({
         "width": "35%",
         "display": "inline-block",
     });
-    teamDiv.append(ranks, teamFirstName, recordDiv, oppDiv, blank, teamLastName);
+    teamDiv.append(ranks, teamName, recordDiv, oppDiv);
     return teamDiv;
 }
 
@@ -174,15 +181,15 @@ export const weekForm = function(week) {
 export const handleWeekChange = function(event) {
     event.preventDefault();
     let weekNum = $(event.target)[0].value.substr(5,6);
-    $('#home')[0].children[1].remove();
-    $('#home').append(loadConferences(weekNum));
+    $('#home')[0].children[0].remove();
+    $('#home').prepend(loadConferences(weekNum));
 }
 
 export const loadHomePage = function() {
     let $home = $('#home');
 
-    $home.append(weekForm(13));
     $home.append(loadConferences(13));
+    $home.append(weekForm(13));
 }
 
 $(function() {
