@@ -16,6 +16,11 @@ export const getPlayers = async function() {
     "pittsburgh", "virginia%20tech", "florida%20state",
     "north%20carolina", "louisville"];
 
+    let allTeams = ["Clemson", "Syracuse", "North Carolina State", 
+    "Duke", "Virginia", "Boston College", "Wake Forest", 
+    "Georgia Tech", "Miami", "Pittsburgh", "Virginia Tech", 
+    "Florida State", "North Carolina", "Louisville"];
+
     for (let a = 0; a < fullTeams.length; a++) {
         await axios({
             method: "get",
@@ -32,7 +37,7 @@ export const getPlayers = async function() {
                     let id = d[players].id;
                     let stats = createStatObject();
                     pubRoot.post(`/players/`+ id, {
-                        data: {"first": first, "last": last, "position" : position, "jersey": jersey, "team": fullTeams[a], "statsPerWeek": stats}
+                        data: {"first": first, "last": last, "position" : position, "jersey": jersey, "team": allTeams[a], "statsPerWeek": stats}
                     });
                    
                 };
@@ -58,18 +63,43 @@ export const createStatObject = function() {
     return statsPerWeek;
 };
 
-export const createTeam = function(teamCity, teamName, schedule, pic) {
+export const createTeam = function(id, teamCity, teamName, winPercent, division, teamColors, schedule, pic) {
     pubRoot.post(`/teams/`+teamCity, {
-        data: {teamCity, teamName, schedule, pic}
+        data: {id, teamCity, teamName, winPercent, division, teamColors, schedule, pic}
     });
 };
 
 export const getTeams = async function() {
+  
+    let clemsonC = ["#F56600","#522D80"];
+    let syracuseC = ["#D44500","#3E3D3C", "#6F777D", "#ADB3B8", "#3E3D3C"];
+    let ncstateC = ["#CC0000","#000000", "#FFFFFF"];
+    let dukeC = ["#003087","#000000"];
+    let virginiaC = ["#232D4B","#F84C1E", "#FFFFFF"];
+    let bostonC = ["#98002E","#BC9B6A", "#726158"];
+    let wakeforestC = ["#9E7E38","#000000"];
+    let georgiaC = ["#A28D5B","#003057"];
+    let miamiC = ["#F47321","#005030", "#FFFFFF"];
+    let pittC = ["#1C2957","#CDB87D"];
+    let vtC = ["#630031","#CF4420"];
+    let floridaC = ["#782F40","#CEB888", "#FFFFFF", "#000000"];
+    let ncC = ["#7BAFD4","#FFF"];
+    let louisvilleC = ["#AD0000","#000000", "#FDB913"];
+
+    let teamColors = [clemsonC, syracuseC, ncstateC, dukeC, virginiaC, bostonC,
+        wakeforestC, georgiaC, miamiC, pittC, vtC, floridaC, ncC, louisvilleC];
+    
+    let teamPics = ["teamLogos/clemson.png", "teamLogos/syracuse.png","teamLogos/ncstate.png",
+    "teamLogos/duke.png","teamLogos/virginia.png","teamLogos/bostoncollege.png","teamLogos/wakeforest.png",
+    "teamLogos/georgiatech.png","teamLogos/miami.png","teamLogos/pitt.png","teamLogos/virginiatech.png",
+    "teamLogos/floridastate.png","teamLogos/unc.png","teamLogos/louisville.png"];
+    
     await axios({
         method: "get",
         url: 'http://api.sportradar.us/ncaafb-t1/teams/FBS/2018/REG/standings.json?api_key=sg8pf7bdjt5u8ueedttyytwx',
     }).then(data => {
         let teams = data.data.division.conferences[0].teams;
+    
         for (let i = 0; i < teams.length; i++) {
             let market = teams[i].market;
             if (teams[i].market == "Miami (FL)") {
@@ -78,7 +108,15 @@ export const getTeams = async function() {
             if (teams[i].market == "North Carolina State") {
                 market = "NC State";
             }
-            createTeam(market, teams[i].name, [], 0);
+           // console.log(teams[i].subdivision);
+            let subDivision = "";
+
+            if (teams[i].subdivision == "ACC-ATLANTIC") {
+                subDivision = "ATLANTIC";
+            } else {
+                subDivision = "COASTAL";
+            };
+            createTeam(i, market, teams[i].name, 0, subDivision, teamColors[i], [], teamPics[i]);
         }
     });
 };
@@ -209,27 +247,27 @@ export const updateStat = function(s, type, tempStats) {
     };
 };
 
-export const getAllTeams = async function() {
-    let teams =  await pubRoot.get('/teams')
-    return teams.data;
-};
+export const addByes = async function() {
+    for (let i = 0; i < fullTeams.length; i++) {
+         let schedule = await pubRoot.get("/teams/" + fullTeams[i] + "/schedule/");
+         let sched = schedule.data.result;
+         let schedCount = 0;
+         for (let j = 1; j < 15; j++) {
+             if (sched[schedCount] != j.toString()) {
+                 pubRoot.post("/teams/" + fullTeams[i] + "/schedule/" + j, {
+                     data: {
+                        opponent: "BYE",
+                        thisScore: 0,
+                        oppScore: 0,
+                     }
+                 });
+                 schedCount--;
+             };
+             schedCount++;
+         };
+    };
+ };
 
-let addByes = async function() {
-   for (let i = 0; i < fullTeams.length; i++) {
-        let schedule = await pubRoot.get("/teams/" + fullTeams[i] + "/schedule/");
-        let sched = schedule.data.result;
-        let schedCount = 0;
-        for (let j = 1; j < 15; j++) {
-            if (sched[schedCount] != j.toString()) {
-                pubRoot.post("/teams/" + fullTeams[i] + "/schedule/" + j, {
-                    data: "BYE",
-                })
-                schedCount--;
-            }
-            schedCount++;
-        }
-   }
-}
 //pubRoot.delete(`/players`);
 //pubRoot.delete(`/teams`);
 //getPlayers();
@@ -237,6 +275,7 @@ let addByes = async function() {
 //getTeams();
 //getSchedule();
 //addByes();
+
 
 
 
