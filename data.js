@@ -273,6 +273,18 @@ export const addByes = async function() {
     };
  };
 
+export const makePoints = function(stats) {
+    let total = 0;
+    total += (stats["pyd"]*.04);
+    total += (stats["ptd"]*4);
+    total += (stats["runyd"]*.1);
+    total += (stats["runtd"]*6);
+    total += (stats["ryd"]*.1);
+    total += (stats["rtd"]*6);
+    total += (stats["rec"]*1);
+    return total;
+}
+
 //pubRoot.delete(`/players`);
 //pubRoot.delete(`/teams`);
 //getPlayers();
