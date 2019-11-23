@@ -216,6 +216,11 @@ export const getStats = async function() {
                         updateStat(runyd, "runyd", tempStats);
                         updateStat(ptd, "ptd", tempStats);
                         updateStat(pyd, "pyd", tempStats);
+                        
+                        for (let key in tempStats) {
+                            tempStats[key]["points"] = makePoints(tempStats[key]);
+                        }
+                        
                         for (let key in tempStats) {
                             pubRoot.post("/players/" + key + "/statsPerWeek/" + a, {
                                 data: tempStats[key],
