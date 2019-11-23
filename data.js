@@ -218,7 +218,7 @@ export const getStats = async function() {
                         updateStat(pyd, "pyd", tempStats);
                         
                         for (let key in tempStats) {
-                            tempStats[key]["points"] = makePoints(tempStats[key]);
+                            tempStats[key]["points"] = Math.round(makePoints(tempStats[key])*100) / 100.0;
                         }
                         
                         for (let key in tempStats) {
