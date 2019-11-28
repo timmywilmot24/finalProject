@@ -1,4 +1,4 @@
-export const loadCreate = function() {
+export const loadCreate = function(event) {
     let userText = $('<div>Username:</div>');
     let user = $('<input type="text" class="usernameInput">');
     let passText = $('<div>Password:</div>');
@@ -9,16 +9,18 @@ export const loadCreate = function() {
     let league = $('<input type="checkbox" class="leagueOption">')
     let submit = $('<button class="createButton">Create</button>');
     let panel = $('<div class="loginPage"></div>').append(userText, user, passText, pass, nameText, name, leagueText, league, submit);
+    $(event.target).closest('.home').remove();
     $('#login').append(panel);
 }
 
-export const loadLogin = function() {
+export const loadLogin = function(event) {
     let userText = $('<div>Username:</div>');
     let user = $('<input type="text" class="usernameInput">');
     let passText = $('<div>Password:</div>');
     let pass = $('<input type="text" class="passwordInput">');
     let submit = $('<button class="loginButton">Login</button>');
     let panel = $('<div class="loginPages"></div>').append(userText, user, passText, pass, submit);
+    $(event.target).closest('.home').remove();
     $('#login').append(panel);
 }
 
@@ -68,7 +70,8 @@ export const handleCreateButton = async function(event) {
     if (($('.leagueOption')[0].checked)) {
         $(event.target.closest('.loginPage')).replaceWith(renderLeagueCreateForm());
     } else {
-        event.target.closest('.loginPage').replaceWith(loadPage);
+        event.target.closest('.loginPage').remove()
+        loadPage();
 
     }
 }
@@ -115,6 +118,35 @@ export const handleCreateLeague = function(event) {
     let leagueName = event.target.closest(".leagueMake").children[1].value;
     let leagueAmount = event.target.closest(".leagueMake").children[3].value;
     let jwt = document.cookie.substring(4);
+    let players = {};
+    players[1] = {
+        name: "me",
+        team: {
+            QB: "",
+            RB: "",
+            RB: "",
+            WR: "",
+            TE: "",
+            Bench1: "",
+            Bench2: "",
+            Bench3: "",
+        },
+    }
+    for (let i = 2; i < parseInt(leagueAmount)+1; i++) {
+        players[i] = {
+            name: "",
+            team: {
+                QB: "",
+                RB: "",
+                RB: "",
+                WR: "",
+                TE: "",
+                Bench1: "",
+                Bench2: "",
+                Bench3: "",
+            },
+        }
+    }
     axios({
         method: "post",
         url: "http://localhost:3000/private/leagues/" + leagueName,
@@ -125,12 +157,10 @@ export const handleCreateLeague = function(event) {
             data: {
                 name: leagueName,
                 size: leagueAmount,
+                league: players,
+
             }
         }
-    })
-    axios({
-        method: "post",
-        url: "http://localhost:3000/user/"
     })
 }
 
@@ -139,7 +169,9 @@ export const loadPage = function() {
 
     let create = $('<button class="create">Create</button>');
     let login = $('<button class="login">Login</button>');
-    $login.append(create, login);
+    let home = $('<div class="home"></div>').append(create, login);
+
+    $login.append(home);
 
     $login.on('click', '.create', loadCreate);
     $login.on('click', '.login', loadLogin);
