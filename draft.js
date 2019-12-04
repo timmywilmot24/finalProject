@@ -243,6 +243,6 @@ let mainTeams = {};
 let mainPlayers = [];
 
 $(function() {
-    fillLeague();
+    fillLeague("Hello");
     loadDraftPage();
 });
