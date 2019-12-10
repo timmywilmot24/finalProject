@@ -232,8 +232,18 @@ export const loadDraftPage = function() {
         loadAutoDraftManager()
     }, 1500);
 
+    $home.append(lookAtTeam());
     $home.on('click', '.draftButton', handleDraftEvent);
 
+}
+export const lookAtTeam = function() {
+    let panel = $('<div id="currentTeam"></div>');
+    let qbDiv = $('<div id="QB"></div>').append("QB: ");
+    let rbDiv = $('<div id="RB"></div>').append("RB: ");
+    let wrDiv = $('<div id="WR"></div>').append("WR: ");
+    let teDiv = $('<div id="TE"></div>').append("TE: ");
+    panel.append(qbDiv, rbDiv, wrDiv, teDiv);
+    return panel;
 }
 
 //Have user stored somehow here
