@@ -1,9 +1,9 @@
-
 export const renderWeekForm = function() {
     let panel = $('<div class="select field is-rounded weekForm"></div>').css({
         "width": "8%",
         "margin-left": "auto",
         "margin-right": "auto",
+        "padding-bottom": "60px"
     });
     let select = $('<select></select>').change(handleWeekChange);
     select.append($('<option selected="selected"></option').append("All"));
@@ -11,7 +11,7 @@ export const renderWeekForm = function() {
     select.append($('<option></option').append("RB"));
     select.append($('<option></option').append("WR"));
     select.append($('<option></option').append("TE"));
-    let searchBar = $('<input type="text" placeholder="Search for player here...">').keyup(handleSearchKeyPress);
+    let searchBar = $('<input type="text" placeholder="Search for player here..." class="searchBar">').keyup(handleSearchKeyPress);
     panel.append(select, searchBar);
     return panel;
 }
@@ -69,7 +69,7 @@ export const renderPlayerList = function(string) {
             }
             playerArray[i][1]["points"] = Math.round((total)*100) / 100.0;
         }
-        playerArray.sort((a, b) => (a[1].points < b[1].points) ? 1 : -1)
+        playerArray.sort((a, b) => (a[1].points < b[1].points) ? 1 : -1);
         let panel = $('<div class="allPlayers"></div>');
         let numPlayers = 100;
         if (playerArray.length < numPlayers) {
@@ -87,34 +87,40 @@ export const filterPos = function(position) {
     $.ajax({
         method: 'GET',
         url: 'http://localhost:3000/public/players',
-    }).then(data => { 
-        let players = data.result;
+    }).then(data => {
+        let players = Object.entries(data.result);
         let playerArray = [];
-        for (let key in players) {
-            if (players[key].position == position) {
-                playerArray.push(players[key]);
-            } else if (position == "All") {
-                playerArray.push(players[key]);
+        let string = $('.searchBar')[0].value;
+        for (let i = 0; i < players.length; i++) {
+            let name = players[i][1].first + " " + players[i][1].last;
+            name = name.toLowerCase();
+            string = string.toLowerCase();
+            if (name.includes(string)) {
+                if (players[i][1].position == position) {
+                    playerArray.push(players[i]);
+                } else if (position == "All") {
+                    playerArray.push(players[i]);
+                }
             }
         }
         for (let i = 0; i < playerArray.length; i++) {
             let total = 0;
-            let playerStats = playerArray[i].statsPerWeek;
+            let playerStats = playerArray[i][1].statsPerWeek;
             for (let key in playerStats) {
                 if (playerStats[key].points != undefined) {
                     total += playerStats[key].points;
                 }
             }
-            playerArray[i]["points"] = Math.round((total)*100) / 100.0;
+            playerArray[i][1]["points"] = Math.round((total)*100) / 100.0;
         }
-        playerArray.sort((a, b) => (a.points < b.points) ? 1 : -1)
+        playerArray.sort((a, b) => (a[1].points < b[1].points) ? 1 : -1);
         let panel = $('<div class="allPlayers"></div>');
         let numPlayers = 100;
         if (playerArray.length < numPlayers) {
             numPlayers = playerArray.length;
         }
         for (let i = 0; i < numPlayers; i++) {
-            panel.append(renderPlayerCard(playerArray[i], i));
+            panel.append(renderPlayerCard(playerArray[i][1], i));
         }
         $("#home").append(panel);
     });
