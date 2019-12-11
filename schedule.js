@@ -1,3 +1,19 @@
+//get user and league here
+let user = "";
+let league = "";
+let token = "Bearer " + getCookie(user);
+axios({
+    method: "get",
+    url: "http://localhost:3000/private/leagues/" + league + "users/",
+    headers: {
+        Authorization: token
+    }
+}).then(data => {
+    let teams = data.data.result;
+    let schedule = makeSchedule();
+    
+});
+
 export const makeSchedule = function() {
     let sched = [];
     let w1 = [[1,2],[3,4],[5,6],[7,8]];
@@ -8,14 +24,15 @@ export const makeSchedule = function() {
     let w6 = [[1,7],[3,5],[4,6],[2,8]];
     let w7 = [[1,8],[2,6],[3,7],[4,5]];
     sched.push(w1, w2, w3, w4, w5, w6, w7, w1, w2, w3, w4, w5);
-    axios({
-        method: "post",
-        url: "http://localhost:3000/public/schedule",
-        data: {
-            data: {
-                sched
-            }
-        }
-    });
+//     axios({
+//         method: "post",
+//         url: "http://localhost:3000/public/schedule",
+//         data: {
+//             data: {
+//                 sched
+//             }
+//         }
+//     });
+    return sched;
 }
 makeSchedule();
